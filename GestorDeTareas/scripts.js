@@ -2,17 +2,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const formularioTarea = document.getElementById('formularioTarea');
     const listaTareas = document.getElementById('listaTareas');
 
-    // Función para guardar tareas en el localStorage
     const guardarTareasEnLocalStorage = (tareas) => {
         localStorage.setItem('tareas', JSON.stringify(tareas));
     };
 
-    // Función para obtener tareas del localStorage
     const obtenerTareasDeLocalStorage = () => {
         return JSON.parse(localStorage.getItem('tareas')) || [];
     };
 
-    // Función para renderizar tareas en la lista
     const renderizarTareas = (tareas) => {
         listaTareas.innerHTML = '';
         tareas.forEach(tarea => {
@@ -42,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Función para añadir una tarea
     const agregarTarea = (tarea) => {
         const tareas = obtenerTareasDeLocalStorage();
         tareas.push(tarea);
@@ -50,7 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderizarTareas(tareas);
     };
 
-    // Función para marcar o desmarcar una tarea como completada
     const cambiarEstadoTarea = (id, completada) => {
         const tareas = obtenerTareasDeLocalStorage();
         const tarea = tareas.find(t => t.id === id);
@@ -61,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Función para eliminar una tarea
     const eliminarTarea = (id) => {
         let tareas = obtenerTareasDeLocalStorage();
         tareas = tareas.filter(tarea => tarea.id !== id);
@@ -69,7 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderizarTareas(tareas);
     };
 
-    // Evento para manejar el envío del formulario
     formularioTarea.addEventListener('submit', (event) => {
         event.preventDefault();
         const nombreTarea = document.getElementById('nombreTarea').value;
@@ -95,7 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
         formularioTarea.reset();
     });
 
-    // Evento para manejar los clics en los botones de la lista de tareas
     listaTareas.addEventListener('click', (event) => {
         if (event.target.classList.contains('marcar-completada')) {
             const id = parseInt(event.target.getAttribute('data-id'));
@@ -112,7 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
             eliminarTarea(id);
         }
     });
-
-    // Renderizar tareas al cargar la página
+    
     renderizarTareas(obtenerTareasDeLocalStorage());
 });
