@@ -1,0 +1,12 @@
+.completada {
+    background-color: #d4edda;
+    text-decoration: line-through;
+}
+
+.vencida {
+    background-color: #f8d7da;
+}
+
+.pendiente {
+    background-color: #ffffff;
+}
